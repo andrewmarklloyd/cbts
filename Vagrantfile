@@ -9,5 +9,6 @@ Vagrant.configure("2") do |config|
   
   config.vm.provider "virtualbox" do |v|
     v.gui = true
+    v.name = "cbt-machine"
   end
 end
