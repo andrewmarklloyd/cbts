@@ -6,7 +6,6 @@ Vagrant.configure("2") do |config|
   config.vm.box_version = "1.0.0"
   config.vm.synced_folder "#{Dir.home}/Desktop/cbt_mount", "/Users/vagrant/Desktop/cbt_mount", create: true
   # disable network adapter?
-  
   config.vm.provider "virtualbox" do |v|
     v.gui = true
     v.name = "cbt-machine"
@@ -15,6 +14,9 @@ Vagrant.configure("2") do |config|
                 "--storagectl", "IDE Controller",
                 "--port", "0", "--device", "1",
                 "--type", "dvddrive",
-                "--medium", "#{Dir.home}/Desktop/LMAD_PH1_2020.ISO"]
+                "--medium", "{{.ISO}}"]
   end
 end
+
+
+# This app can't be activate when UAC is disabled
