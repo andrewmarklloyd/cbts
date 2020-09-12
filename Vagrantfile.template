@@ -17,6 +17,3 @@ Vagrant.configure("2") do |config|
                 "--medium", "{{.ISO}}"]
   end
 end
-
-
-# This app can't be activate when UAC is disabled
