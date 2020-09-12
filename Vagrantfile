@@ -10,5 +10,11 @@ Vagrant.configure("2") do |config|
   config.vm.provider "virtualbox" do |v|
     v.gui = true
     v.name = "cbt-machine"
+    v.customize ["modifyvm", :id, "--vram", "128"]
+    v.customize ["storageattach", :id,
+                "--storagectl", "IDE Controller",
+                "--port", "0", "--device", "1",
+                "--type", "dvddrive",
+                "--medium", "#{Dir.home}/Desktop/LMAD_PH1_2020.ISO"]
   end
 end
