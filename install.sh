@@ -1,5 +1,7 @@
 #!/bin/bash
 
+mkdir -p "${HOME}/vagrant"
+cd "${HOME}/vagrant"
 
 echo "Installing homebrew"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
