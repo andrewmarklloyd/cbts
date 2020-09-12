@@ -1,5 +1,7 @@
 #!/bin/bash
 
+scriptDir=$(pwd)
+
 mkdir -p "${HOME}/vagrant"
 cd "${HOME}/vagrant"
 
@@ -15,14 +17,18 @@ install_tools() {
 }
 
 get_config() {
-  echo "Downloading config files"
-  curl -s -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/andrewmarklloyd/cbts/master/Vagrantfile.template > Vagrantfile.template
+  if [[ ${DEBUG} ]]; then
+    cp ${scriptDir}/Vagrantfile.template .
+  else
+    echo "Downloading config files"
+    curl -s -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/andrewmarklloyd/cbts/master/Vagrantfile.template > Vagrantfile.template
+  fi
 }
 
 sed_iso() {
   ISO=$(find ${HOME}/Desktop -type f -name *.ISO -depth 1)
   if [[ -z ${ISO} ]]; then
-    echo "ISO file not found! Copy the CBT ISO file to the Desktop."
+    echo "ISO file not found! Ensure the CBT ISO file is on the Desktop."
     exit 1
   fi
   numFiles=$(echo "${ISO}" | wc -l)
@@ -37,7 +43,7 @@ sed_iso() {
 reload_course() {
   course=$(find ${HOME}/Desktop -type f -name reload*.zip -depth 1)
   if [[ -z ${course} ]]; then
-    echo "CBT course reload file not found! Copy the CBT course reload zip file to the Desktop."
+    echo "CBT course reload file not found! Ensure the CBT course reload zip file is on the Desktop."
     exit 1
   fi
   numFiles=$(echo "${course}" | wc -l)
