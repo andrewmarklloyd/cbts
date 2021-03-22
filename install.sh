@@ -10,10 +10,10 @@ install_tools() {
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
   echo "Installing virtualbox"
-  brew cask install virtualbox
+  brew install --cask virtualbox
 
   echo "Installing vagrant"
-  brew cask install vagrant
+  brew install --cask vagrant
 }
 
 get_config() {
